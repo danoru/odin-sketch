@@ -7,11 +7,23 @@
     <link rel="stylesheet" href="styles.css">
     <title>Odin Sketch</title>
   </head>
-  <header>
-    <div><button id="resizer" onclick="makeGrid()">Resize</button></div>
-  </header>
   <body>
-    <div id="container"></div>
+    <div class="flex-container">
+      <div class="title"><h1>Odin Sketch Project</h1></div>
+      <div class="content">
+        <div class="sketchpad"></div>
+        <div class="buttons">
+          <button onclick="changeColor('black')">Black</button>
+          <button onclick="changeColor('white')">Erase</button>
+          <button onclick="changeColor('random')">Random</button>
+          <button>Reset</button>
+        </div>
+        <div>
+          <input type="text" placeholder="Sketchpad Size" value="16" onchange="gridSize(this.value)"/>
+          <button>Resize</button>
+        </div>
+      </div>
+    </div>
   </body>
   <script src="script.js"></script>
 </html>

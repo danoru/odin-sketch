@@ -1,16 +1,39 @@
-const container = document.getElementById("container");
+let color = "black";
 
-function createGrid(rows, columns) {
-  container.style.setProperty('--grid-rows', rows);
-  container.style.setProperty('--grid-columns', columns);
-  for (c = 0; c < (rows * columns); c++) {
-    let cell = document.createElement("div");
-    cell.innerText = (c + 1);
-    container.appendChild(cell).className = "grid-item";
+function makeGrid(size) {
+  let sketchpad = document.querySelector(".sketchpad");
+  let squares = sketchpad.querySelectorAll("div");
+  squares.forEach((div) => div.remove());
+  sketchpad.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+  sketchpad.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+
+  let amount = size * size;
+  for(let i = 0; i < amount; i++) {
+    let square = document.createElement("div");
+    square.addEventListener('mouseover', colorSquare)
+    square.style.backgroundColor= "white";
+    sketchpad.insertAdjacentElement("beforeend", square);
   };
 };
 
-function makeGrid() {
-  let gridSize = prompt("What size grid would you like?")
-  createGrid(gridSize, gridSize);
-}
+makeGrid(16);
+
+function gridSize(input) {
+  if(input >= 2 && input <= 100) {
+    makeGrid(input);
+  } else {
+    console.log("Too many squares.")
+  };
+};
+
+function colorSquare() {
+  if(color === "random") {
+    this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+  } else {
+    this.style.backgroundColor = color;
+  }
+};
+
+function changeColor(choice) {
+  color = choice;
+};
