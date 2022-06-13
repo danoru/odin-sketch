@@ -37,3 +37,9 @@ function colorSquare() {
 function changeColor(choice) {
   color = choice;
 };
+
+function resetGrid() {
+  let sketchpad = document.querySelector(".sketchpad");
+  let squares = sketchpad.querySelectorAll("div");
+  squares.forEach((div) => div.style.backgroundColor = "white");
+}
